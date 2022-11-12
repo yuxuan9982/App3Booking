@@ -19,7 +19,7 @@
                 <DependentLayout
                     ohos:height="match_content"
                     ohos:width="match_content"
-                    ohos:left_margin="$string:margin"
+                    ohos:left_margin="50vp"
                     ohos:top_margin="$string:margin"
                     >
                     <Image
@@ -34,6 +34,7 @@
                         ohos:text="餐饮"
                         ohos:text_size="$string:small_text"
                         ohos:below="$id:o1"
+                        ohos:left_margin="6vp"
                         ohos:text_alignment="center"
                         />
                 </DependentLayout>
@@ -55,6 +56,7 @@
                         ohos:width="match_content"
                         ohos:text="购物"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o2"
                         />
                 </DependentLayout>
@@ -68,13 +70,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o3"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:daily"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="日用"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o3"
                         />
                 </DependentLayout>
@@ -89,13 +92,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o4"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:transport"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="交通"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o4"
                         />
                 </DependentLayout>
@@ -110,12 +114,13 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o5"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:fruit"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="水果"
+                        ohos:left_margin="6vp"
                         ohos:text_size="$string:small_text"
                         ohos:below="$id:o5"
                         />
@@ -131,13 +136,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o6"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:electronic"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
-                        ohos:text="电子"
+                        ohos:text="游戏"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o6"
                         />
                 </DependentLayout>
@@ -152,13 +158,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o7"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:sport"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="运动"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o7"
                         />
                 </DependentLayout>
@@ -173,13 +180,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o8"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:snack"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="零食"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o8"
                         />
                 </DependentLayout>
@@ -194,13 +202,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o9"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:entertainment"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="娱乐"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o9"
                         />
                 </DependentLayout>
@@ -215,13 +224,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o10"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:adressbook"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="通讯"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o10"
                         />
                 </DependentLayout>
@@ -237,13 +247,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o11"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:clothe"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="服饰"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o11"
                         />
                 </DependentLayout>
@@ -258,12 +269,13 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o12"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:face"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="美容"
+                        ohos:left_margin="6vp"
                         ohos:text_size="$string:small_text"
                         ohos:below="$id:o12"
                         />
@@ -279,12 +291,13 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o13"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:house"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="住房"
+                        ohos:left_margin="6vp"
                         ohos:text_size="$string:small_text"
                         ohos:below="$id:o13"
                         />
@@ -300,13 +313,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o14"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:inhome"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="居家"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o14"
                         />
                 </DependentLayout>
@@ -321,13 +335,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o15"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:son"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="育儿"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o15"
                         />
                 </DependentLayout>
@@ -341,13 +356,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o16"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:father"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="养老"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o16"
                         />
                 </DependentLayout>
@@ -362,13 +378,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o17"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:social"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="社交"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o17"
                         />
                 </DependentLayout>
@@ -383,13 +400,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o18"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:travel"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="旅行"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o18"
                         />
                 </DependentLayout>
@@ -404,13 +422,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o19"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:wine"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="烟酒"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o19"
                         />
                 </DependentLayout>
@@ -425,13 +444,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o20"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:computer"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="数码"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o20"
                         />
                 </DependentLayout>
@@ -446,13 +466,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o21"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:car"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="汽车"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o21"
                         />
                 </DependentLayout>
@@ -467,13 +488,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o22"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:medi"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="医药"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o22"
                         />
                 </DependentLayout>
@@ -488,13 +510,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o23"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:book"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="书籍"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o23"
                         />
                 </DependentLayout>
@@ -509,13 +532,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o24"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:learning"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="学习"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o24"
                         />
                 </DependentLayout>
@@ -530,13 +554,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o25"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:per"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="宠物"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o25"
                         />
                 </DependentLayout>
@@ -551,13 +576,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o26"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:money"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="出礼"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o26"
                         />
                 </DependentLayout>
@@ -572,13 +598,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o27"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:gift"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="礼物"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o27"
                         />
                 </DependentLayout>
@@ -594,13 +621,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o28"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:desk"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="办公"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o28"
                         />
                 </DependentLayout>
@@ -615,13 +643,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o29"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:repair"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="维修"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o29"
                         />
                 </DependentLayout>
@@ -636,13 +665,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o30"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:donate"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="捐赠"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o30"
                         />
                 </DependentLayout>
@@ -657,13 +687,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o31"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:ticket"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="彩票"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o31"
                         />
                 </DependentLayout>
@@ -677,13 +708,14 @@
                         ohos:height="$string:normal_len"
                         ohos:width="$string:normal_len"
                         ohos:id="$+id:o32"
-                        ohos:background_element="$media:icon"
+                        ohos:background_element="$media:friends"
                         />
                     <Text
                         ohos:height="match_content"
                         ohos:width="match_content"
                         ohos:text="亲友"
                         ohos:text_size="$string:small_text"
+                        ohos:left_margin="6vp"
                         ohos:below="$id:o32"
                         />
                 </DependentLayout>
@@ -697,13 +729,15 @@
                     ohos:height="$string:normal_len"
                     ohos:width="$string:normal_len"
                     ohos:id="$+id:o33"
-                    ohos:background_element="$media:icon"
+                    ohos:background_element="$media:els"
                     />
                 <Text
                     ohos:height="match_content"
                     ohos:width="match_content"
                     ohos:text="其他"
                     ohos:text_size="$string:small_text"
+
+                    ohos:left_margin="6vp"
                     ohos:below="$id:o33"
                     />
             </DependentLayout>

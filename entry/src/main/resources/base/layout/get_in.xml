@@ -23,12 +23,13 @@
                 ohos:height="$string:normal_len"
                 ohos:width="$string:normal_len"
                 ohos:id="$+id:i1"
-                ohos:background_element="$media:icon"
+                ohos:background_element="$media:salary"
                 />
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:text="工资"
+                ohos:left_margin="6vp"
                 ohos:text_size="$string:small_text"
                 ohos:below="$id:i1"
                 ohos:text_alignment="center"
@@ -44,12 +45,13 @@
                 ohos:height="$string:normal_len"
                 ohos:width="$string:normal_len"
                 ohos:id="$+id:i2"
-                ohos:background_element="$media:icon"
+                ohos:background_element="$media:parttime"
                 />
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:text="兼职"
+                ohos:left_margin="6vp"
                 ohos:text_size="$string:small_text"
                 ohos:below="$id:i2"
                 ohos:text_alignment="center"
@@ -65,12 +67,13 @@
                 ohos:height="$string:normal_len"
                 ohos:width="$string:normal_len"
                 ohos:id="$+id:i3"
-                ohos:background_element="$media:icon"
+                ohos:background_element="$media:manage"
                 />
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:text="理财"
+                ohos:left_margin="6vp"
                 ohos:text_size="$string:small_text"
                 ohos:below="$id:i3"
                 ohos:text_alignment="center"
@@ -87,12 +90,13 @@
                 ohos:height="$string:normal_len"
                 ohos:width="$string:normal_len"
                 ohos:id="$+id:i4"
-                ohos:background_element="$media:icon"
+                ohos:background_element="$media:money"
                 />
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:text="礼金"
+                ohos:left_margin="6vp"
                 ohos:text_size="$string:small_text"
                 ohos:below="$id:i4"
                 ohos:text_alignment="center"
@@ -109,12 +113,13 @@
                 ohos:height="$string:normal_len"
                 ohos:width="$string:normal_len"
                 ohos:id="$+id:i5"
-                ohos:background_element="$media:icon"
+                ohos:background_element="$media:els"
                 />
             <Text
                 ohos:height="match_content"
                 ohos:width="match_content"
                 ohos:text="其他"
+                ohos:left_margin="6vp"
                 ohos:text_size="$string:small_text"
                 ohos:below="$id:i5"
                 ohos:text_alignment="center"
