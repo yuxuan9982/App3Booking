@@ -1,0 +1,41 @@
+{
+  "string": [
+    {
+      "name": "entry_MainAbility",
+      "value": "entry_MainAbility"
+    },
+    {
+      "name": "mainability_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "mainability_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "book_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "book_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_Book",
+      "value": "entry_Book"
+    },
+    {
+      "name": "margin",
+      "value": "40vp"
+    },{
+      "name": "small_text",
+      "value": "20vp"
+    },{
+      "name": "medium_text",
+      "value": "40vp"
+    },{
+      "name": "normal_len",
+      "value": "50vp"
+    }
+  ]
+}
