@@ -4,19 +4,33 @@ import com.example.book_keeping_app.PageProvider;
 import com.example.book_keeping_app.ResourceTable;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
-import ohos.agp.components.Button;
-import ohos.agp.components.Component;
-import ohos.agp.components.PageSlider;
-import ohos.agp.components.TabList;
+import ohos.agp.components.*;
+import ohos.agp.utils.LayoutAlignment;
+import ohos.agp.utils.TextAlignment;
+import ohos.agp.window.dialog.CommonDialog;
+import ohos.app.Context;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookSlice extends AbilitySlice {
+    List<Integer> in=new ArrayList<>();
+    List<Integer> out=new ArrayList<>();
+    Integer now_num=0;
+    public void init_inout(){
+        int begin=ResourceTable.Id_i1;
+        for(int i=1;i<=5;i++,begin++)
+            in.add(begin);
+        begin=ResourceTable.Id_o1;
+        for(int i=1;i<=31;i++,begin++)
+            out.add(begin);
+    }
+    Context ctx;
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_Book);
+        ctx=getContext();
         TabList tabList=(TabList) findComponentById(ResourceTable.Id_tab_list1);
         String[] tab_name={"支出","收入"};
         tabList.removeAllComponents();//if not , return make 2 more
@@ -62,8 +76,52 @@ public class BookSlice extends AbilitySlice {
                 terminate();
             }
         });
+        init_inout();
+        for(Integer o:out){
+            Image img=(Image) findComponentById(o);
+            img.setClickedListener(new Component.ClickedListener() {
+                @Override
+                public void onClick(Component component) {
+                    caculator();
+                }
+            });
+        }
+        for(Integer i:in){
+            Image img=(Image) findComponentById(i);
+            img.setClickedListener(new Component.ClickedListener() {
+                @Override
+                public void onClick(Component component) {
+                    caculator();
+                }
+            });
+        }
     }
+    public void caculator(){
+        CommonDialog cd=new CommonDialog(ctx);
+        cd.setAlignment(LayoutAlignment.BOTTOM);
+        DirectionalLayout dl=new DirectionalLayout(ctx);
+        dl.setWidth(ComponentContainer.LayoutConfig.MATCH_PARENT);
+        dl.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
 
+        Text text=new Text(ctx);
+        text.setTextAlignment(TextAlignment.RIGHT);
+        text.setText(String.valueOf(now_num));
+        text.setTextSize(AttrHelper.vp2px(50,getContext()));
+        text.setWidth(ComponentContainer.LayoutConfig.MATCH_PARENT);
+
+
+
+        TableLayout tl=new TableLayout(this);
+        tl.setColumnCount(4);
+        tl.setRowCount(4);
+
+        dl.addComponent(text);
+        dl.addComponent(tl);
+
+        cd.setContentCustomComponent(dl);
+        cd.setAutoClosable(true);
+        cd.show();
+    }
     @Override
     public void onActive() {
         super.onActive();

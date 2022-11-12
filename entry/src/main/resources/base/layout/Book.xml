@@ -17,6 +17,8 @@
             ohos:height="match_content"
             ohos:width="match_content"
             ohos:text_size="30vp"
+            ohos:text_alignment="center"
+            ohos:layout_alignment="center"
             ohos:text="返回"/>
 
         <TabList
@@ -29,7 +31,7 @@
             ohos:text_alignment="center"
             ohos:tab_length="100vp"
             ohos:normal_text_color="black"
-            ohos:selected_text_color="red"
+            ohos:selected_text_color="#2138FD"
             ohos:left_margin="$string:margin"
             />
     </DirectionalLayout>

@@ -31,6 +31,6 @@ public class PageProvider extends PageSliderProvider {
 
     @Override
     public boolean isPageMatchToObject(Component component, Object o) {
-        return true;
+        return false;
     }
 }
