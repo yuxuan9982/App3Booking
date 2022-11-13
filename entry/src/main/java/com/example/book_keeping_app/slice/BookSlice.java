@@ -2,6 +2,7 @@ package com.example.book_keeping_app.slice;
 
 import com.example.book_keeping_app.PageProvider;
 import com.example.book_keeping_app.ResourceTable;
+import com.example.book_keeping_app.model.database;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.colors.RgbColor;
@@ -10,12 +11,9 @@ import ohos.agp.components.element.ShapeElement;
 import ohos.agp.utils.LayoutAlignment;
 import ohos.agp.utils.TextAlignment;
 import ohos.agp.window.dialog.CommonDialog;
-import ohos.app.Context;
 import ohos.data.DatabaseHelper;
-import ohos.data.rdb.RdbOpenCallback;
+import ohos.data.orm.OrmContext;
 import ohos.data.rdb.RdbStore;
-import ohos.data.rdb.StoreConfig;
-import ohos.utils.system.SystemCapability;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +23,7 @@ public class BookSlice extends AbilitySlice {
     List<Integer> out=new ArrayList<>();
     PageSlider ps;
     RdbStore store;
+    OrmContext o_ctx;
     public void init_inout(){
         int begin=ResourceTable.Id_i1;
         for(int i=1;i<=5;i++,begin++)
@@ -33,27 +32,16 @@ public class BookSlice extends AbilitySlice {
         for(int i=1;i<=31;i++,begin++)
             out.add(begin);
     }
-    void init_dataBase(){
-        DatabaseHelper helper=new DatabaseHelper(this);
-        StoreConfig cfg=StoreConfig.newDefaultConfig("Store.db");
-        RdbOpenCallback callback= new RdbOpenCallback() {
-            @Override
-            public void onCreate(RdbStore rdbStore) {
-                rdbStore.executeSql("CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, age INTEGER, salary REAL, blobType BLOB)");
-            }
 
-            @Override
-            public void onUpgrade(RdbStore rdbStore, int i, int i1) {
-
-            }
-        };
-        store= helper.getRdbStore(cfg,1,callback,null);
-    }
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_Book);
-        init_dataBase();
+
+//        DatabaseHelper helper=new DatabaseHelper(this);
+//        o_ctx=helper.getOrmContext("database","database.db", database.class);
+
+
         TabList tabList=(TabList) findComponentById(ResourceTable.Id_tab_list1);
         String[] tab_name={"支出","收入"};
         tabList.removeAllComponents();//if not , return make 2 more
@@ -205,9 +193,11 @@ public class BookSlice extends AbilitySlice {
             public void onClick(Component component) {
                 if(val.length()>0)
                     val=val.substring(0,val.length()-1);
-                text.setText(String.valueOf(calc(val)));
+                double v=calc(val);
+                text.setText(String.valueOf(v) );
                 hinter.setText(val.length()==0?"0":val);
 
+                //data_item item=new data_item(LocalDate.now(),1,1,ResourceTable.Media_eating,v);
             }
         });
         num[3][3].setClickedListener(o->{
