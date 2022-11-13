@@ -5,6 +5,7 @@ import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.components.Button;
 import ohos.agp.components.Component;
+import ohos.agp.components.Image;
 import ohos.app.Context;
 
 public class MainAbilitySlice extends AbilitySlice {
@@ -13,7 +14,7 @@ public class MainAbilitySlice extends AbilitySlice {
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_ability_main);
-        Button b1=(Button) findComponentById(ResourceTable.Id_but1);
+        Image b1=(Image) findComponentById(ResourceTable.Id_add);
         b1.setClickedListener(new Component.ClickedListener() {
             @Override
             public void onClick(Component component) {

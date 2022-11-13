@@ -1,25 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<DirectionalLayout
+<StackLayout
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:alignment="center"
-    ohos:orientation="vertical">
+    >
 
-    <Text
-        ohos:id="$+id:text_helloworld"
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:background_element="$graphic:background_ability_main"
-        ohos:layout_alignment="horizontal_center"
-        ohos:text="$string:mainability_HelloWorld"
-        ohos:text_size="40vp"
+    <DirectionalLayout
+        ohos:height="match_parent"
+        ohos:width="match_parent"
+        ohos:alignment="horizontal_center"
+        ohos:orientation="vertical">
+        <Text
+            ohos:id="$+id:title"
+            ohos:height="match_content"
+            ohos:width="match_parent"
+            ohos:background_element="yellow"
+            ohos:text_alignment="center"
+            ohos:text="记账本"
+            ohos:text_size="30vp"
+            />
+        <DirectionalLayout
+            ohos:height="match_content"
+            ohos:layout_alignment="horizontal_center"
+            ohos:orientation="horizontal"
+            ohos:top_margin="20vp"
+            ohos:width="match_parent">
+            <Text
+                ohos:id="$+id:date"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="30vp"
+                ohos:left_margin="20vp"
+                ohos:text="date"
+                />
+            <Text
+                ohos:id="$+id:in_money"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="30vp"
+                ohos:left_margin="20vp"
+                ohos:text="收入"
+                />
+            <Text
+                ohos:id="$+id:out_money"
+                ohos:height="match_content"
+                ohos:width="match_content"
+                ohos:text_size="30vp"
+                ohos:left_margin="20vp"
+                ohos:text="支出"
+                />
+        </DirectionalLayout>
+
+    </DirectionalLayout>
+
+    <Image
+        ohos:id="$+id:add"
+        ohos:height="40vp"
+        ohos:width="40vp"
+        ohos:layout_alignment="right|bottom"
+        ohos:background_element="$media:add"
+        ohos:right_margin="20vp"
+        ohos:bottom_margin="20vp"
         />
-    <Button
-        ohos:id="$+id:but1"
-        ohos:height="match_content"
-        ohos:width="match_content"
-        ohos:text_size="50vp"
-        ohos:text="记账"
+    <Image
+        ohos:id="$+id:more"
+        ohos:height="40vp"
+        ohos:width="40vp"
+        ohos:layout_alignment="right|bottom"
+        ohos:background_element="$media:list"
+        ohos:right_margin="80vp"
+        ohos:bottom_margin="20vp"
         />
-</DirectionalLayout>
+<!--    <StackLayout-->
+<!--        ohos:height="match_content"-->
+<!--        ohos:width="match_content"-->
+<!--        ohos:layout_alignment="bottom|right"-->
+<!--        >-->
+<!--        -->
+<!--    </StackLayout>-->
+</StackLayout>

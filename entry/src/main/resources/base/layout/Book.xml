@@ -19,7 +19,7 @@
             ohos:text_size="30vp"
             ohos:text_alignment="center"
             ohos:layout_alignment="center"
-            ohos:text="返回"/>
+            ohos:text="◀"/>
 
         <TabList
             ohos:id="$+id:tab_list1"
