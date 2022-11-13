@@ -8,6 +8,7 @@ import ohos.agp.components.Component;
 import ohos.app.Context;
 
 public class MainAbilitySlice extends AbilitySlice {
+    int cnt=0;
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -18,6 +19,7 @@ public class MainAbilitySlice extends AbilitySlice {
             public void onClick(Component component) {
                 Intent in=new Intent();
                 AbilitySlice slice= new BookSlice();
+                in.setParam("cnt",++cnt);
                 present(slice,in);
             }
         });

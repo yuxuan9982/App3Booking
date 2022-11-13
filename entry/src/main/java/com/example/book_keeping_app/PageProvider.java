@@ -26,11 +26,11 @@ public class PageProvider extends PageSliderProvider {
 
     @Override
     public void destroyPageFromContainer(ComponentContainer componentContainer, int i, Object o) {
-        componentContainer.removeComponent((Component) o);
+        componentContainer.removeComponent((Component) o);//very important
     }
 
     @Override
     public boolean isPageMatchToObject(Component component, Object o) {
-        return false;
+        return true;
     }
 }
