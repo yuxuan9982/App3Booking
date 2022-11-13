@@ -22,7 +22,7 @@
         <DirectionalLayout
             ohos:height="match_content"
             ohos:layout_alignment="horizontal_center"
-            ohos:orientation="horizontal"
+            ohos:orientation="vertical"
             ohos:top_margin="20vp"
             ohos:width="match_parent">
             <Text
@@ -50,7 +50,11 @@
                 ohos:text="支出"
                 />
         </DirectionalLayout>
-
+<!--        <ListContainer-->
+<!--            ohos:height="match_content"-->
+<!--            ohos:width="match_parent"-->
+<!--            ohos:id="$+id:record"-->
+<!--            />-->
     </DirectionalLayout>
 
     <Image
