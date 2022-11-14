@@ -98,8 +98,19 @@ public class MainAbilitySlice extends AbilitySlice {
             y.setPadding(10,10,10,10);
             dl.addComponent(m);dl.addComponent(y);
 
-
-
+            m.setClickedListener(v->{
+                Intent in=new Intent();
+                analyzeSlice slice= new analyzeSlice();
+                in.setParam("year",year);
+                in.setParam("month",month);
+                present(slice,in);pd.destroy();
+            });
+            y.setClickedListener(v->{
+                Intent in=new Intent();
+                analyzeSlice slice= new analyzeSlice();
+                in.setParam("year",year);
+                present(slice,in);pd.destroy();
+            });
 
             pd.setCustomComponent(dl);
             pd.setAutoClosable(true);

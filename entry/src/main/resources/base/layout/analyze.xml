@@ -3,7 +3,6 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
-    ohos:alignment="center"
     ohos:orientation="vertical">
 
     <Text
@@ -11,12 +10,14 @@
         ohos:width="match_content"
         ohos:text="总支出"
         ohos:id="$+id:tot_out"
+        ohos:layout_alignment="horizontal_center"
         ohos:text_size="20vp"
         />
     <Text
         ohos:height="match_content"
         ohos:width="match_content"
         ohos:text="number"
+        ohos:layout_alignment="horizontal_center"
         ohos:id="$+id:out_num"
         ohos:text_size="40vp"
         />
@@ -24,6 +25,7 @@
         ohos:height="match_content"
         ohos:width="match_content"
         ohos:text="总收入"
+        ohos:layout_alignment="horizontal_center"
         ohos:id="$+id:tot_in"
         ohos:text_size="20vp"
         />
@@ -31,8 +33,42 @@
         ohos:height="match_content"
         ohos:width="match_content"
         ohos:text="number"
+        ohos:layout_alignment="horizontal_center"
         ohos:id="$+id:in_num"
         ohos:text_size="40vp"
         />
-    
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="支出排行榜"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text_size="20vp"
+        />
+    <ListContainer
+        ohos:top_margin="5vp"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:id="$+id:a_list_out"
+        ohos:layout_alignment="left"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="收入排行榜"
+        ohos:layout_alignment="horizontal_center"
+        ohos:text_size="20vp"
+        />
+    <ListContainer
+        ohos:top_margin="5vp"
+        ohos:height="match_content"
+        ohos:width="match_parent"
+        ohos:id="$+id:a_list_in"
+        ohos:layout_alignment="left"
+        />
+    <Button
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:background_element="$media:back_sp"
+        ohos:id="$+id:a_back"
+        />
 </DirectionalLayout>
