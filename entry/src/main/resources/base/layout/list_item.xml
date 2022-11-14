@@ -9,7 +9,6 @@
         ohos:width="$string:normal_len"
         ohos:id="$+id:list_img"
         ohos:left_margin="20vp"
-        ohos:background_element="$media:money"
         />
     <Text
         ohos:height="25vp"

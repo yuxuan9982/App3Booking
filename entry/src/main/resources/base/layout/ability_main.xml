@@ -56,6 +56,7 @@
 <!--            ohos:id="$+id:record"-->
 <!--            />-->
         <ListContainer
+            ohos:top_margin="20vp"
             ohos:height="match_content"
             ohos:width="match_parent"
             ohos:id="$+id:list_container"

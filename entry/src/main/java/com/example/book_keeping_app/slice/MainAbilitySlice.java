@@ -25,6 +25,14 @@ public class MainAbilitySlice extends AbilitySlice {
     int cnt=0;
     OrmContext o_ctx;
     List<Rec> recList;
+
+    @Override
+    protected void onAbilityResult(int requestCode, int resultCode, Intent resultData) {
+        if(requestCode==0){
+            update_rec();
+        }
+    }
+
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -42,10 +50,14 @@ public class MainAbilitySlice extends AbilitySlice {
 //                AbilitySlice slice= new BookSlice();
 //                in.setParam("cnt",++cnt);
 //                present(slice,in);
-                Operation operation=new Intent.OperationBuilder().withAbilityName("com.example.book_keeping_app.Book").build();
+                Operation operation=new Intent.OperationBuilder().
+                        withDeviceId("").
+                        withBundleName("com.example.book_keeping_app").
+                        withAbilityName("com.example.book_keeping_app.Book").
+                        build();
                 in.setOperation(operation);
-                startAbility(in);
-
+                //startAbility(in);
+                startAbilityForResult(in,0);
             }
         });
         LocalDate date=LocalDate.now();
@@ -86,4 +98,5 @@ public class MainAbilitySlice extends AbilitySlice {
     public void onForeground(Intent intent) {
         super.onForeground(intent);
     }
+
 }

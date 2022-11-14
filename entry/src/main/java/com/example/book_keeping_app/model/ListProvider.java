@@ -2,8 +2,11 @@ package com.example.book_keeping_app.model;
 
 import com.example.book_keeping_app.ResourceTable;
 import ohos.agp.components.*;
+import ohos.agp.components.element.PixelMapElement;
 import ohos.app.Context;
-
+import ohos.global.resource.NotExistException;
+import ohos.global.resource.Resource;
+import java.io.IOException;
 import java.util.List;
 
 public class ListProvider extends BaseItemProvider {
@@ -31,11 +34,14 @@ public class ListProvider extends BaseItemProvider {
         DependentLayout dl=(DependentLayout) LayoutScatter.getInstance(ctx).parse(ResourceTable.Layout_list_item,null,false);
         Image img=(Image) dl.findComponentById(ResourceTable.Id_list_img);
         Rec now=list.get(i);
+
         img.setImageAndDecodeBounds(now.getResource());
+        img.setScaleMode(Image.ScaleMode.STRETCH);
         Text t1=(Text) dl.findComponentById(ResourceTable.Id_list_type);
-        t1.setText(now.getType()==0?"支出":"收入");
+        t1.setText((now.getType()==0?"支：":"收：")+now.getMessage()  );
+
         Text t2=(Text) dl.findComponentById(ResourceTable.Id_list_note);
-        t2.setText(now.getMessage()  );
+        t2.setText( String.valueOf(now.getYear())+"-"+String.valueOf(now.getMonth())+"-"+String.valueOf(now.getDay()) );
         Text t3=(Text) dl.findComponentById(ResourceTable.Id_list_money);
         t3.setText(String.valueOf(Math.abs(now.getVal())*(now.getType()==0?-1:1))  );
         return dl;

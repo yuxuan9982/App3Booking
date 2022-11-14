@@ -17,6 +17,7 @@ import ohos.data.orm.OrmContext;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class BookSlice extends AbilitySlice {
@@ -24,13 +25,128 @@ public class BookSlice extends AbilitySlice {
     List<Integer> out=new ArrayList<>();
     PageSlider ps;
     OrmContext o_ctx;
+    String note;Integer from;
+    //获取对应的标签
+    HashMap<Integer,String> mp;
+    HashMap<Integer,Integer> bac;
     public void init_inout(){
         int begin=ResourceTable.Id_i1;
-        for(int i=1;i<=5;i++,begin++)
-            in.add(begin);
-        begin=ResourceTable.Id_o1;
-        for(int i=1;i<=31;i++,begin++)
-            out.add(begin);
+//        for(int i=1;i<=5;i++,begin++)
+//            in.add(begin);
+//        begin=ResourceTable.Id_o1;
+//        for(int i=1;i<=33;i++,begin++)
+//            out.add(begin);
+        in.add(ResourceTable.Id_i1);in.add(ResourceTable.Id_i2);in.add(ResourceTable.Id_i3);
+        in.add(ResourceTable.Id_i4);in.add(ResourceTable.Id_i5);
+        out.add(ResourceTable.Id_o1);out.add(ResourceTable.Id_o2);out.add(ResourceTable.Id_o3);out.add(ResourceTable.Id_o4);
+        out.add(ResourceTable.Id_o5);out.add(ResourceTable.Id_o6);out.add(ResourceTable.Id_o7);out.add(ResourceTable.Id_o8);
+        out.add(ResourceTable.Id_o9);out.add(ResourceTable.Id_o10);out.add(ResourceTable.Id_o11);out.add(ResourceTable.Id_o12);
+        out.add(ResourceTable.Id_o13);out.add(ResourceTable.Id_o14);out.add(ResourceTable.Id_o15);out.add(ResourceTable.Id_o16);
+        out.add(ResourceTable.Id_o17);out.add(ResourceTable.Id_o18);out.add(ResourceTable.Id_o19);out.add(ResourceTable.Id_o20);
+        out.add(ResourceTable.Id_o21);out.add(ResourceTable.Id_o22);out.add(ResourceTable.Id_o23);out.add(ResourceTable.Id_o24);
+        out.add(ResourceTable.Id_o25);out.add(ResourceTable.Id_o26);out.add(ResourceTable.Id_o27);out.add(ResourceTable.Id_o28);
+        out.add(ResourceTable.Id_o29);out.add(ResourceTable.Id_o30);out.add(ResourceTable.Id_o31);out.add(ResourceTable.Id_o32);
+        out.add(ResourceTable.Id_o33);
+    }
+    public void init_map(){
+        String[] basic_in={"工资","兼职","理财","礼金","其他"};
+        String[] basic_out={"餐饮","购物","日用","交通","水果"
+                ,"游戏","运动","零食","娱乐","通讯","服饰","美容"
+        ,"住房","居家","育儿","养老"
+                ,"社交","旅行","烟酒","数码","汽车","医药",
+                "书籍","学习","宠物","出礼","礼物","办公","维修",
+                "捐赠","彩票","亲友","其他"};
+        int cnt=0;
+        mp=new HashMap<>();
+        for(Integer o:out){
+            mp.put(o,basic_out[cnt++]);
+        }
+        cnt=0;
+        for(Integer i:in){
+            mp.put(i,basic_in[cnt++]);
+        }
+
+    }
+    public int getId(Component o){
+        switch (o.getId()){
+            case ResourceTable.Id_i1:
+                return ResourceTable.Media_salary;
+            case ResourceTable.Id_i2:
+                return ResourceTable.Media_parttime;
+            case ResourceTable.Id_i3:
+                return ResourceTable.Media_manage;
+            case ResourceTable.Id_i4:
+                return ResourceTable.Media_money;
+            case ResourceTable.Id_i5:
+                return ResourceTable.Media_els;
+            case ResourceTable.Id_o1:
+                return ResourceTable.Media_eating;
+            case ResourceTable.Id_o2:
+                return ResourceTable.Media_shopping;
+            case ResourceTable.Id_o3:
+                return ResourceTable.Media_daily;
+            case ResourceTable.Id_o4:
+                return ResourceTable.Media_transport;
+            case ResourceTable.Id_o5:
+                return ResourceTable.Media_fruit;
+            case ResourceTable.Id_o6:
+                return ResourceTable.Media_electronic;
+            case ResourceTable.Id_o7:
+                return ResourceTable.Media_sport;
+            case ResourceTable.Id_o8:
+                return ResourceTable.Media_snack;
+            case ResourceTable.Id_o9:
+                return ResourceTable.Media_entertainment;
+            case ResourceTable.Id_o10:
+                return ResourceTable.Media_adressbook;
+            case ResourceTable.Id_o11:
+                return ResourceTable.Media_clothe;
+            case ResourceTable.Id_o12:
+                return ResourceTable.Media_face;
+            case ResourceTable.Id_o13:
+                return ResourceTable.Media_house;
+            case ResourceTable.Id_o14:
+                return ResourceTable.Media_inhome;
+            case ResourceTable.Id_o15:
+                return ResourceTable.Media_son;
+            case ResourceTable.Id_o16:
+                return ResourceTable.Media_father;
+            case ResourceTable.Id_o17:
+                return ResourceTable.Media_social;
+            case ResourceTable.Id_o18:
+                return ResourceTable.Media_travel;
+            case ResourceTable.Id_o19:
+                return ResourceTable.Media_wine;
+            case ResourceTable.Id_o20:
+                return ResourceTable.Media_computer;
+            case ResourceTable.Id_o21:
+                return ResourceTable.Media_car;
+            case ResourceTable.Id_o22:
+                return ResourceTable.Media_medi;
+            case ResourceTable.Id_o23:
+                return ResourceTable.Media_book;
+            case ResourceTable.Id_o24:
+                return ResourceTable.Media_learning;
+            case ResourceTable.Id_o25:
+                return ResourceTable.Media_per;
+            case ResourceTable.Id_o26:
+                return ResourceTable.Media_money;
+            case ResourceTable.Id_o27:
+                return ResourceTable.Media_gift;
+            case ResourceTable.Id_o28:
+                return ResourceTable.Media_desk;
+            case ResourceTable.Id_o29:
+                return ResourceTable.Media_repair;
+            case ResourceTable.Id_o30:
+                return ResourceTable.Media_donate;
+            case ResourceTable.Id_o31:
+                return ResourceTable.Media_ticket;
+            case ResourceTable.Id_o32:
+                return ResourceTable.Media_friends;
+            case ResourceTable.Id_o33:
+                return ResourceTable.Media_els;
+        }
+        return ResourceTable.Media_house;
     }
     int type;
     @Override
@@ -40,7 +156,6 @@ public class BookSlice extends AbilitySlice {
 
         DatabaseHelper helper=new DatabaseHelper(this);
         o_ctx=helper.getOrmContext("database","database.db", Rec_db.class);
-
 
         TabList tabList=(TabList) findComponentById(ResourceTable.Id_tab_list1);
         String[] tab_name={"支出","收入"};
@@ -87,12 +202,14 @@ public class BookSlice extends AbilitySlice {
                 terminate();
             }
         });
-        init_inout();
+        init_inout();init_map();
         for(Integer o:out){
             Image img=(Image) findComponentById(o);
             img.setClickedListener(new Component.ClickedListener() {
                 @Override
                 public void onClick(Component component) {
+                    Integer i=component.getId();
+                    note=mp.get(i);from=getId(component);
                     caculator();
                 }
             });
@@ -102,6 +219,7 @@ public class BookSlice extends AbilitySlice {
             img.setClickedListener(new Component.ClickedListener() {
                 @Override
                 public void onClick(Component component) {
+                    note=mp.get(component.getId());from=getId(component);
                     caculator();
                 }
             });
@@ -216,7 +334,9 @@ public class BookSlice extends AbilitySlice {
 
         num[3][3].setClickedListener(o->{
             //data_item item=new data_item(LocalDate.now(),1,1,ResourceTable.Media_eating,v);
-            Rec record=new Rec(type,ResourceTable.Media_computer,msg.getText(),calc(val), LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+            Rec record=new Rec(type,from,msg.getText().length()==0?note:msg.getText(),calc(val),
+                    LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+
             o_ctx.insert(record);o_ctx.flush();
             cd.destroy();terminate();
         });
