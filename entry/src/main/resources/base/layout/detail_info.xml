@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_parent"
+    ohos:width="match_parent"
+
+    ohos:orientation="vertical">
+    <Image
+        ohos:height="100vp"
+        ohos:width="100vp"
+        ohos:id="$+id:o1"
+        ohos:layout_alignment="horizontal_center"
+        ohos:background_element="$media:eating"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="类型"
+        ohos:left_margin="20vp"
+        ohos:text_size="30vp"
+        ohos:id="$+id:d_type"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="金额"
+
+        ohos:text_size="30vp"
+        ohos:left_margin="20vp"
+        ohos:id="$+id:d_money"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="日期"
+        ohos:left_margin="20vp"
+        ohos:text_size="30vp"
+        ohos:id="$+id:d_date"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text="备注"
+        ohos:left_margin="20vp"
+        ohos:text_size="30vp"
+        ohos:id="$+id:d_note"
+        ohos:multiple_lines="true"
+        />
+    <Button
+        ohos:height="40vp"
+        ohos:width="40vp"
+        ohos:layout_alignment="horizontal_center"
+        ohos:background_element="$media:d_return"
+        ohos:id="$+id:d_ret"
+        />
+
+
+</DirectionalLayout>

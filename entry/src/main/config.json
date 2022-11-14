@@ -56,6 +56,26 @@
         "orientation": "unspecified",
         "visible": true,
         "type": "page"
+      },
+      {
+        "name": "com.example.book_keeping_app.detail_info",
+        "description": "$string:detail_info_description",
+        "icon": "$media:icon",
+        "label": "$string:entry_detail_info",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "visible": true,
+        "type": "page"
+      },
+      {
+        "name": "com.example.book_keeping_app.analyze",
+        "description": "$string:analyze_description",
+        "icon": "$media:icon",
+        "label": "$string:entry_analyze",
+        "launchType": "standard",
+        "orientation": "unspecified",
+        "visible": true,
+        "type": "page"
       }
     ]
   }

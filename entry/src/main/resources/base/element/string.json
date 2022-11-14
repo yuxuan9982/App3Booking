@@ -27,15 +27,42 @@
     {
       "name": "margin",
       "value": "40vp"
-    },{
+    },
+    {
       "name": "small_text",
       "value": "20vp"
-    },{
+    },
+    {
       "name": "medium_text",
       "value": "40vp"
-    },{
+    },
+    {
       "name": "normal_len",
       "value": "50vp"
+    },
+    {
+      "name": "detail_info_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "detail_info_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_detail_info",
+      "value": "entry_detail_info"
+    },
+    {
+      "name": "analyze_description",
+      "value": "Java_Empty Ability"
+    },
+    {
+      "name": "analyze_HelloWorld",
+      "value": "Hello World"
+    },
+    {
+      "name": "entry_analyze",
+      "value": "entry_analyze"
     }
   ]
 }

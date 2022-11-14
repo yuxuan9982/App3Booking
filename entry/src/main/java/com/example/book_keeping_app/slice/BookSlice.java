@@ -8,13 +8,19 @@ import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.colors.RgbColor;
 import ohos.agp.components.*;
+import ohos.agp.components.element.PixelMapElement;
 import ohos.agp.components.element.ShapeElement;
+import ohos.agp.text.Layout;
 import ohos.agp.utils.LayoutAlignment;
 import ohos.agp.utils.TextAlignment;
 import ohos.agp.window.dialog.CommonDialog;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
+import ohos.global.icu.text.Normalizer2;
+import ohos.global.resource.NotExistException;
+import ohos.global.resource.Resource;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -148,7 +154,7 @@ public class BookSlice extends AbilitySlice {
         }
         return ResourceTable.Media_house;
     }
-    int type;
+    int type,year,month,day;
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -257,6 +263,7 @@ public class BookSlice extends AbilitySlice {
     TextField msg;
     public void caculator(){//这部分注意后续逻辑的添加
         val="";
+        year=LocalDate.now().getYear();month=LocalDate.now().getMonthValue();day=LocalDate.now().getDayOfMonth();
         CommonDialog cd=new CommonDialog(this);
         cd.setAlignment(LayoutAlignment.BOTTOM);
         DirectionalLayout dl=new DirectionalLayout(this);
@@ -295,6 +302,7 @@ public class BookSlice extends AbilitySlice {
             num[i][j].setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
             num[i][j].setText(content[i][j]);
             num[i][j].setTextAlignment(TextAlignment.CENTER);
+            set_but_back(num[i][j],0,254,255);
             tl.addComponent(num[i][j]);
             if((i==0&&j==3)||(i==3&&j==2)||(j==3&&i==3))continue;
             num[i][j].setClickedListener(new Component.ClickedListener() {
@@ -318,11 +326,37 @@ public class BookSlice extends AbilitySlice {
 
             }
         });
+        //set date
+        num[0][3].setClickedListener(new Component.ClickedListener() {
+            @Override
+            public void onClick(Component component) {
+                CommonDialog cd=new CommonDialog(getContext());
+
+                DirectionalLayout dl=(DirectionalLayout) LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_time_picker,null,false);
+                //dl.setWidth(AttrHelper.vp2px(300,getContext()));
+                //dl.setHeight(AttrHelper.vp2px(300,getContext()));
+                DatePicker picker=(DatePicker) dl.findComponentById(ResourceTable.Id_datepicker);
+                Button b1=(Button) dl.findComponentById(ResourceTable.Id_pick_back);
+                Button b2=(Button) dl.findComponentById(ResourceTable.Id_pic_confirm);
+                b1.setClickedListener(o->{cd.destroy();});
+                b2.setClickedListener(o->{
+                    year=picker.getYear();month=picker.getMonth();day=picker.getDayOfMonth();
+                    update_date(num[0][3]);
+                    cd.destroy();
+                });
+                cd.setContentCustomComponent(dl);
+                cd.setAutoClosable(true);
+                cd.show();
+            }
+        });
+        update_date(num[0][3]);
+
+        //set date
         dl.addComponent(text);dl.addComponent(hinter);
         //add message
         msg=new TextField(this);
         msg.setHint("备注");
-        msg.setTextSize(AttrHelper.vp2px(30,this));
+        msg.setTextSize(AttrHelper.vp2px(50,this));
         msg.setWidth(ComponentContainer.LayoutConfig.MATCH_PARENT);
         msg.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
         dl.addComponent(msg);
@@ -335,17 +369,39 @@ public class BookSlice extends AbilitySlice {
         num[3][3].setClickedListener(o->{
             //data_item item=new data_item(LocalDate.now(),1,1,ResourceTable.Media_eating,v);
             Rec record=new Rec(type,from,msg.getText().length()==0?note:msg.getText(),calc(val),
-                    LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+                    year,month,day);
 
             o_ctx.insert(record);o_ctx.flush();
             cd.destroy();terminate();
         });
     }
+    public void update_date(Text b){
+        if(LocalDate.of(year,month,day).equals(LocalDate.now() ) ){
+            b.setText("");
+            b.setTextSize(AttrHelper.vp2px(30,getContext()));
+            set_Background(b,ResourceTable.Media_today);
+        }else{
+            b.setBackground(null);
+            b.setText(String.valueOf(year)+"-"+String.valueOf(month)+"-"+String.valueOf(day));
+            b.setTextSize(AttrHelper.vp2px(15,getContext()));
+            //b.setAutoFontSize(true);
+        }
+    }
     @Override
     public void onActive() {
         super.onActive();
     }
-
+    public void set_Background(Component component,int id){
+        try {
+            Resource resource= getResourceManager().getResource(id);
+            PixelMapElement pixelMapElement=new PixelMapElement(resource);
+            component.setBackground(pixelMapElement);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NotExistException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onForeground(Intent intent) {
         super.onForeground(intent);

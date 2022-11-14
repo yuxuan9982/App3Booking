@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DirectionalLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:width="match_parent"
+    ohos:orientation="vertical">
+    <DependentLayout
+        ohos:height="match_content"
+        ohos:orientation="horizontal"
+        ohos:width="match_parent">
+
+        <Button
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="返回"
+            ohos:id="$+id:pick_back"
+            ohos:align_parent_left="true"
+            ohos:left_margin="40vp"
+            ohos:text_size="20vp"
+            />
+        <Button
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="选择日期"
+            ohos:id="$+id:pick_date"
+            ohos:center_in_parent="true"
+            ohos:text_size="20vp"
+            />
+        <Button
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="确定"
+            ohos:align_parent_right="true"
+            ohos:id="$+id:pic_confirm"
+            ohos:right_margin="40vp"
+            ohos:text_size="20vp"
+            />
+    </DependentLayout>
+    <DatePicker
+        ohos:height="200vp"
+        ohos:width="match_parent"
+        ohos:id="$+id:datepicker"
+        ohos:text_size="20vp"
+        ohos:selected_text_color="#2138FD"
+        ohos:date_order="year-month-day"
+
+        />
+</DirectionalLayout>

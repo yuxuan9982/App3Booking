@@ -7,8 +7,11 @@ import com.example.book_keeping_app.model.Rec_db;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.aafwk.content.Operation;
+import ohos.agp.colors.RgbColor;
 import ohos.agp.components.*;
+import ohos.agp.components.element.ShapeElement;
 import ohos.agp.window.dialog.CommonDialog;
+import ohos.agp.window.dialog.PopupDialog;
 import ohos.agp.window.dialog.ToastDialog;
 import ohos.app.Context;
 import ohos.data.DatabaseHelper;
@@ -32,7 +35,11 @@ public class MainAbilitySlice extends AbilitySlice {
             update_rec();
         }
     }
-
+    int year,month;
+    double in,out;
+    //排序方式
+    //本月分析
+    //年度分析
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
@@ -62,37 +69,124 @@ public class MainAbilitySlice extends AbilitySlice {
         });
         LocalDate date=LocalDate.now();
         Text time=(Text) findComponentById(ResourceTable.Id_date);
-        time.setText(date.toString()+"▼");
-
-        //\
-//        OrmPredicates query=o_ctx.where(Rec.class);
-//        List<Rec> reclist=o_ctx.query(query);
-//
-//        CommonDialog dialog=new CommonDialog(getContext());
-//        dialog.setContentText(String.valueOf(reclist.size()));
-//        dialog.show();
-        //
+        year=date.getYear();month=date.getMonthValue();
+        time.setText(String.valueOf(year)+"-"+String.valueOf(month)+"▼");
         //for debug
-        Rec record=new Rec(0,ResourceTable.Media_computer,"msg",123, LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+        Rec record=new Rec(0,ResourceTable.Media_computer,"msg",123,
+                LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
         o_ctx.insert(record);o_ctx.flush();
         //for debug
         //list container part
-        ListContainer listContainer=(ListContainer) findComponentById(ResourceTable.Id_list_container);
-        recList= o_ctx.query(o_ctx.where(Rec.class));
-        ListProvider provider= new ListProvider(recList,this);
-        listContainer.setItemProvider(provider);
-
+        update_rec();
         //list container part
+        get_tot();
+        get_more();
+    }
+    public void get_more(){
+        Image more=(Image) findComponentById(ResourceTable.Id_more);
+        more.setClickedListener(o->{
+            PopupDialog pd=new PopupDialog(getContext(),o);
+            DirectionalLayout dl=new DirectionalLayout(getContext());
+            set_but_back(dl,192,192,192);
+            dl.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+            dl.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+            Text m=new Text(getContext()),y=new Text(getContext());
+            m.setText("本月统计");y.setText("年度统计");
+            m.setTextSize(AttrHelper.vp2px(30,getContext()));
+            y.setTextSize(AttrHelper.vp2px(30,getContext()));
+            m.setPadding(10,10,10,10);
+            y.setPadding(10,10,10,10);
+            dl.addComponent(m);dl.addComponent(y);
+
+
+
+
+            pd.setCustomComponent(dl);
+            pd.setAutoClosable(true);
+            pd.show();
+        });
+    }
+    public void get_tot(){
+        Text date=(Text) findComponentById(ResourceTable.Id_date);
+        date.setClickedListener(o->{
+            CommonDialog cd=new CommonDialog(getContext());
+            DirectionalLayout dl=(DirectionalLayout) LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_time_picker,null,false);
+            //dl.setWidth(AttrHelper.vp2px(300,getContext()));
+            //dl.setHeight(AttrHelper.vp2px(300,getContext()));
+            DatePicker picker=(DatePicker) dl.findComponentById(ResourceTable.Id_datepicker);
+            picker.setDateOrder(DatePicker.DateOrder.YM);
+            Button b1=(Button) dl.findComponentById(ResourceTable.Id_pick_back);
+            Button b2=(Button) dl.findComponentById(ResourceTable.Id_pic_confirm);
+            b1.setClickedListener(v->{cd.destroy();});
+            b2.setClickedListener(v->{
+                year=picker.getYear();month=picker.getMonth();
+                date.setText(String.valueOf(year)+"-"+String.valueOf(month)+"▼");
+                update_rec();
+                cd.destroy();
+            });
+            cd.setContentCustomComponent(dl);
+            cd.setAutoClosable(true);
+            cd.show();
+        });
     }
     @Override
     public void onActive() {
         super.onActive();
     }
     public void update_rec(){
-        recList=o_ctx.query(o_ctx.where(Rec.class));
+        in=out=0;
+        recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
         ListContainer listContainer=(ListContainer) findComponentById(ResourceTable.Id_list_container);
         ListProvider provider= new ListProvider(recList,this);
         listContainer.setItemProvider(provider);
+        provider.setClickedListener(new ListProvider.ClickedListener() {
+            @Override
+            public void click(int pos) {
+                CommonDialog dialog=new CommonDialog(getContext());
+                DirectionalLayout dl= (DirectionalLayout) LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_extern_function,null,false);
+                dialog.setContentCustomComponent(dl);
+                dialog.show();
+                dialog.setCornerRadius(30);
+                dialog.setAutoClosable(true);
+                Rec r=recList.get(pos);
+                Text detail=(Text) dl.findComponentById(ResourceTable.Id_detail);
+                Text del=(Text) dl.findComponentById(ResourceTable.Id_delete);
+                del.setClickedListener(o->{
+                    o_ctx.delete(r);o_ctx.flush();update_rec();dialog.destroy();
+                });
+                detail.setClickedListener(o->{
+                    dialog.destroy();
+                    Intent in2=new Intent();
+                    detail_infoSlice slice=new detail_infoSlice();
+                    in2.setParam("type",r.getType());
+                    in2.setParam("money",r.getVal());
+                    in2.setParam("year",r.getYear());
+                    in2.setParam("month",r.getMonth());
+                    in2.setParam("day",r.getDay());
+                    in2.setParam("note",r.getMessage());
+                    present(slice,in2);
+                });
+            }
+        });
+        update_inout();
+    }
+    public void set_but_back(Component component,int r,int g,int b){
+        ShapeElement element=new ShapeElement();
+        element.setShape(ShapeElement.RECTANGLE);
+        element.setCornerRadius(30);
+        element.setRgbColor(new RgbColor(r,g,b));
+        //element.setStroke(10,new RgbColor(0,0,255));
+        component.setBackground(element);
+    }
+    public void update_inout(){
+        Text in1=(Text) findComponentById(ResourceTable.Id_in_money);
+        Text out1=(Text) findComponentById(ResourceTable.Id_out_money);
+        for(Rec r:recList){
+            if(r.getType()==0)out+=r.getVal();
+            else in+=r.getVal();
+        }
+        in1.setText("总收入："+String.valueOf(in));
+        out1.setText("总支出："+String.valueOf(out));
     }
     @Override
     public void onForeground(Intent intent) {

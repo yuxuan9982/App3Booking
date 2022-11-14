@@ -12,6 +12,13 @@ import java.util.List;
 public class ListProvider extends BaseItemProvider {
     List<Rec> list;
     Context ctx;
+    ClickedListener listener;
+    public void setClickedListener(ClickedListener listener){
+        this.listener=listener;
+    }
+    public static interface  ClickedListener{
+        void click(int pos);
+    }
     @Override
     public int getCount() {
         return list.size();
@@ -44,6 +51,13 @@ public class ListProvider extends BaseItemProvider {
         t2.setText( String.valueOf(now.getYear())+"-"+String.valueOf(now.getMonth())+"-"+String.valueOf(now.getDay()) );
         Text t3=(Text) dl.findComponentById(ResourceTable.Id_list_money);
         t3.setText(String.valueOf(Math.abs(now.getVal())*(now.getType()==0?-1:1))  );
+
+        dl.setClickedListener(new Component.ClickedListener() {
+            @Override
+            public void onClick(Component component) {
+                listener.click(i);
+            }
+        });
         return dl;
     }
 }
