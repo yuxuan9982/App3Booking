@@ -2,7 +2,6 @@ package com.example.book_keeping_app.slice;
 
 import com.example.book_keeping_app.PageProvider;
 import com.example.book_keeping_app.ResourceTable;
-import com.example.book_keeping_app.model.database;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.colors.RgbColor;
