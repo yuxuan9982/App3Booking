@@ -15,6 +15,7 @@ public class Rec extends OrmObject {
     private int resource;
     private String message;
     private double val;
+    public int year,month,day;
 
     public Integer getHash() {
         return Hash;
@@ -52,9 +53,39 @@ public class Rec extends OrmObject {
         this.message = message;
     }
 
+    public int getYear() {
+        return year;
+    }
+
+    public int getMonth() {
+        return month;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public void setMonth(int month) {
+        this.month = month;
+    }
+
+    public void setDay(int day) {
+        this.day = day;
+    }
+
+    public int getDay() {
+        return day;
+    }
+
     public void setVal(double val) {
         this.val = val;
     }
+    public Rec(){
 
+    }
+    public Rec(int type,int resource,String message,double val,int year,int month,int day){
+        this.type=type;this.resource=resource;this.message=message;this.val=val;
+        this.year=year;this.month=month;this.day=day;
+    }
 }
 

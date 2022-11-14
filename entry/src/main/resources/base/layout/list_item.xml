@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DependentLayout
+    xmlns:ohos="http://schemas.huawei.com/res/ohos"
+    ohos:height="match_content"
+    ohos:width="match_parent"
+    ohos:orientation="horizontal">
+    <Image
+        ohos:height="$string:normal_len"
+        ohos:width="$string:normal_len"
+        ohos:id="$+id:list_img"
+        ohos:left_margin="20vp"
+        ohos:background_element="$media:money"
+        />
+    <Text
+        ohos:height="25vp"
+        ohos:width="match_content"
+        ohos:text="类型"
+        ohos:text_size="$string:small_text"
+        ohos:right_of="$id:list_img"
+        ohos:left_margin="5vp"
+        ohos:id="$+id:list_type"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_size="$string:small_text"
+        ohos:right_of="$id:list_img"
+        ohos:below="$id:list_type"
+        ohos:id="$+id:list_note"
+        ohos:left_margin="5vp"
+        ohos:text="备注"
+        />
+    <Text
+        ohos:height="match_content"
+        ohos:width="match_content"
+        ohos:text_size="$string:small_text"
+        ohos:align_parent_right="true"
+        ohos:top_margin="12vp"
+        ohos:right_margin="10vp"
+        ohos:text="金额"
+        ohos:id="$+id:list_money"
+        />
+</DependentLayout>

@@ -1,7 +1,9 @@
 package com.example.book_keeping_app.slice;
 
-import com.example.book_keeping_app.PageProvider;
+import com.example.book_keeping_app.model.PageProvider;
 import com.example.book_keeping_app.ResourceTable;
+import com.example.book_keeping_app.model.Rec;
+import com.example.book_keeping_app.model.Rec_db;
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.aafwk.content.Intent;
 import ohos.agp.colors.RgbColor;
@@ -12,8 +14,8 @@ import ohos.agp.utils.TextAlignment;
 import ohos.agp.window.dialog.CommonDialog;
 import ohos.data.DatabaseHelper;
 import ohos.data.orm.OrmContext;
-import ohos.data.rdb.RdbStore;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,6 @@ public class BookSlice extends AbilitySlice {
     List<Integer> in=new ArrayList<>();
     List<Integer> out=new ArrayList<>();
     PageSlider ps;
-    RdbStore store;
     OrmContext o_ctx;
     public void init_inout(){
         int begin=ResourceTable.Id_i1;
@@ -31,14 +32,14 @@ public class BookSlice extends AbilitySlice {
         for(int i=1;i<=31;i++,begin++)
             out.add(begin);
     }
-
+    int type;
     @Override
     public void onStart(Intent intent) {
         super.onStart(intent);
         super.setUIContent(ResourceTable.Layout_Book);
 
-//        DatabaseHelper helper=new DatabaseHelper(this);
-//        o_ctx=helper.getOrmContext("database","database.db", database.class);
+        DatabaseHelper helper=new DatabaseHelper(this);
+        o_ctx=helper.getOrmContext("database","database.db", Rec_db.class);
 
 
         TabList tabList=(TabList) findComponentById(ResourceTable.Id_tab_list1);
@@ -75,7 +76,7 @@ public class BookSlice extends AbilitySlice {
             public void onPageSlideStateChanged(int i) {}
             @Override
             public void onPageChosen(int i) {
-                tabList.selectTabAt(i);
+                tabList.selectTabAt(i);type=i;
             }
         });
         Button rtn=(Button) findComponentById(ResourceTable.Id_return1);
@@ -135,6 +136,7 @@ public class BookSlice extends AbilitySlice {
     }
     String val;
     String[][] content;
+    TextField msg;
     public void caculator(){//这部分注意后续逻辑的添加
         val="";
         CommonDialog cd=new CommonDialog(this);
@@ -196,18 +198,28 @@ public class BookSlice extends AbilitySlice {
                 text.setText(String.valueOf(v) );
                 hinter.setText(val.length()==0?"0":val);
 
-                //data_item item=new data_item(LocalDate.now(),1,1,ResourceTable.Media_eating,v);
             }
         });
-        num[3][3].setClickedListener(o->{
-            cd.destroy();terminate();
-        });
         dl.addComponent(text);dl.addComponent(hinter);
+        //add message
+        msg=new TextField(this);
+        msg.setHint("备注");
+        msg.setTextSize(AttrHelper.vp2px(30,this));
+        msg.setWidth(ComponentContainer.LayoutConfig.MATCH_PARENT);
+        msg.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+        dl.addComponent(msg);
+        //message
         dl.addComponent(tl);
-
         cd.setContentCustomComponent(dl);
         cd.setAutoClosable(true);
         cd.show();
+
+        num[3][3].setClickedListener(o->{
+            //data_item item=new data_item(LocalDate.now(),1,1,ResourceTable.Media_eating,v);
+            Rec record=new Rec(type,ResourceTable.Media_computer,msg.getText(),calc(val), LocalDate.now().getYear(),LocalDate.now().getMonthValue(),LocalDate.now().getDayOfMonth());
+            o_ctx.insert(record);o_ctx.flush();
+            cd.destroy();terminate();
+        });
     }
     @Override
     public void onActive() {

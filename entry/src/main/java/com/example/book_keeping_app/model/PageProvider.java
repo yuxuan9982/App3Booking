@@ -1,4 +1,4 @@
-package com.example.book_keeping_app;
+package com.example.book_keeping_app.model;
 
 import ohos.aafwk.ability.AbilitySlice;
 import ohos.agp.components.*;
