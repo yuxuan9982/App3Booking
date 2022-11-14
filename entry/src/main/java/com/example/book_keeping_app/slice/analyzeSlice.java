@@ -64,7 +64,10 @@ public class analyzeSlice extends AbilitySlice {
         show_else();
     }
     public void show_else(){
-
+        Text t_out=(Text) findComponentById(ResourceTable.Id_out_num);
+        Text t_in=(Text) findComponentById(ResourceTable.Id_in_num);
+        t_out.setText(String.valueOf(out));
+        t_in.setText(String.valueOf(in));
     }
     public void show_rank(){
         arr_in=new ArrayList<>();
@@ -80,13 +83,16 @@ public class analyzeSlice extends AbilitySlice {
         Collections.sort(arr_in);Collections.sort(arr_out);
 
         List<Rec> lst_in=new ArrayList<>(),lst_out=new ArrayList<>();
+        int cnt_in=0,cnt_out=0;
         for(pair p:arr_in){
             Rec r=new Rec(1,p.second,"支出",p.first,year,month,0);
             lst_in.add(r);
+            if(++cnt_in>=5)break;
         }
         for(pair p:arr_out){
             Rec r=new Rec(0,p.second,"支出",p.first,year,month,0);
             lst_out.add(r);
+            if(++cnt_out>=5)break;
         }
         ListContainer listContainer1=(ListContainer) findComponentById(ResourceTable.Id_a_list_in);
         AnalyzeProvider provider= new AnalyzeProvider(lst_in,this);
