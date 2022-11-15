@@ -3,6 +3,7 @@
     xmlns:ohos="http://schemas.huawei.com/res/ohos"
     ohos:height="match_parent"
     ohos:width="match_parent"
+    ohos:background_element="#FFB0E0E6"
     ohos:orientation="vertical"
     >
     <DirectionalLayout

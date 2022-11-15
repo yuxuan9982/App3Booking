@@ -10,6 +10,7 @@ import ohos.aafwk.content.Operation;
 import ohos.agp.colors.RgbColor;
 import ohos.agp.components.*;
 import ohos.agp.components.element.ShapeElement;
+import ohos.agp.utils.LayoutAlignment;
 import ohos.agp.window.dialog.CommonDialog;
 import ohos.agp.window.dialog.PopupDialog;
 import ohos.agp.window.dialog.ToastDialog;
@@ -37,7 +38,7 @@ public class MainAbilitySlice extends AbilitySlice {
             update_rec();
         }
     }
-    int year,month,order;
+    int year,month,week,order,special,syl,syr,sml,smr,swl,swr,smonl,smonr;
     double in,out;
     //排序方式
     //本月分析
@@ -84,6 +85,100 @@ public class MainAbilitySlice extends AbilitySlice {
         get_tot();
         get_more();
         get_order();
+        get_set();
+    }
+    public DirectionalLayout build_dl(int type){
+        DirectionalLayout dl=new DirectionalLayout(this);
+        if(type==0)dl.setOrientation(Component.VERTICAL);else dl.setOrientation(Component.HORIZONTAL);
+        dl.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+        dl.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+        dl.setAlignment(LayoutAlignment.CENTER);
+        return dl;
+    }
+    public void get_set(){
+        Image i_set=(Image) findComponentById(ResourceTable.Id_setup);
+        i_set.setClickedListener(o->{
+            PopupDialog pd=new PopupDialog(getContext(),o);
+            DirectionalLayout dl=new DirectionalLayout(getContext());
+            set_but_back(dl,192,192,192);
+            dl.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+            dl.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+            Text m=new Text(getContext()),y=new Text(getContext());
+            m.setText("游戏指南");y.setText("版本说明");
+            m.setTextSize(AttrHelper.vp2px(30,getContext()));
+            y.setTextSize(AttrHelper.vp2px(30,getContext()));
+            m.setPadding(10,10,10,10);
+            y.setPadding(10,10,10,10);
+            dl.addComponent(m);dl.addComponent(y);
+            y.setClickedListener(v->{
+                CommonDialog cd=new CommonDialog(this);
+                cd.setAutoClosable(true);
+                DirectionalLayout dl2=build_dl(0);
+
+                Text title= new Text(this);
+                //set_but_back(title,104,0,254);
+                title.setTextSize(50);title.setMultipleLine(true);
+                title.setText("信息说明");
+
+                Text content= new Text(this);
+                content.setTextSize(50);content.setMultipleLine(true);
+                content.setMultipleLine(true);
+                content.setText("游戏名：简约记账\n作者：于轩\n联系方式：2309941940@qq.com");
+
+                Text end=new Text(this);
+                end.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+                end.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+                end.setTextSize(50);
+                end.setText("ver:--1.01");
+                dl2.setPadding(20,20,20,20);
+                dl2.addComponent(title);dl2.addComponent(content);dl2.addComponent(end);
+                set_but_back(dl2,230,231,249);
+                cd.setContentCustomComponent(dl2);
+                cd.show();
+                pd.destroy();
+            });
+            m.setClickedListener(v-> {
+                CommonDialog cd=new CommonDialog(this);
+                cd.setAutoClosable(true);
+                DirectionalLayout dl2=build_dl(0);
+                set_but_back(dl2,220,220,220);
+                ScrollView sv=new ScrollView(this);
+                sv.setHeight(AttrHelper.vp2px(600,getContext()));
+                sv.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+
+                Text content= new Text(this);
+                //set_but_back(content,220,220,220);
+                content.setTextSize(50);content.setMultipleLine(true);
+                content.setText("   这是一款简易记账本。\n" +
+                        "   你可以通过上面的倒三角图标选择你想要查看的月份和年份\n" +
+                        "   如果你想要删除某条记录，只需要点击这条记录就可以删除，如果你想要查看某条记录，需要点击这条记录并选择查看明细\n" +
+                        "   查看月度统计和年度统计请点击更多按钮，然后进入月度统计界面和年度统计界面\n" +
+                        "   此外，如果你想要进一步筛选，可以点击更多按钮，然后进行特征筛选，目前支持对年份月份以及周还有金额的范围进行筛选\n" +
+                        "   本软件提供了两种排序方式，默认屎按照你操作进行的顺序进行排序，你也可以选择按照时间降序进行排序，" +
+                                "考虑到升序在实际应用中十分罕见，并且应用价值不高，因此本软件不提供支持\n" +
+                        "   如果你想要添加新的账单，你可以点击添加按钮，进入添加账单界面\n" +
+                        "   进入账单界面以后，你可以选择想要记录的类别\n" +
+                        "   你可以选择收入账单和支出账单，通过左右滑动界面实现\n" +
+                        "   本软件提供了33种支出类型以及5种收入类型，理论上能够覆盖绝大多数情况的要求，如果仍然没有你想要的类别，你可以点击" +
+                                "”其他“这种类别\n" +
+                        "   点击类别以后，你会获取到作者实现的内置简易计算器，你可以在这个计算器进行表达式的加减乘除计算，" +
+                                "表达式会被记录，防止用户在使用过程中遗忘前面的信息\n" +
+                        "   该计算器具备添加备注功能\n" +
+                        "   该计算器并不是十分完善，作者仅仅做了几种比较简单的check，请确保你的表达式是合法的\n" +
+                        "   你可以在计算器中自由选择日期，如果你选择的日期是今天，那么会显示一个今天的图标，否则会给你显示你选的日期的具体数值"+
+                        "   记录完成后，点击完成按钮，你会返回到账单界面\n"
+                                );
+
+                sv.addComponent(content);
+                dl2.addComponent(sv);
+                cd.setContentCustomComponent(dl2);
+                cd.show();
+                pd.destroy();
+            });
+            pd.setCustomComponent(dl);
+            pd.setAutoClosable(true);
+            pd.show();
+        });
     }
     public void get_order(){
         Image i_order=(Image) findComponentById(ResourceTable.Id_order);
@@ -120,12 +215,60 @@ public class MainAbilitySlice extends AbilitySlice {
             dl.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
             dl.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
             Text m=new Text(getContext()),y=new Text(getContext());
-            m.setText("本月统计");y.setText("年度统计");
+            Text sel=new Text(getContext());
+
+            m.setText("本月统计");y.setText("年度统计");sel.setText("条件筛选");
+
+            sel.setClickedListener(v->{
+                CommonDialog s_d=new CommonDialog(getContext());
+                DirectionalLayout s_dl=(DirectionalLayout) LayoutScatter.getInstance(getContext()).parse(ResourceTable.Layout_select,null,false);
+                s_d.setContentCustomComponent(s_dl);
+                s_d.setAutoClosable(true);
+                s_d.show();
+
+                Button conf=(Button) s_dl.findComponentById(ResourceTable.Id_s_confirm);
+                Button ret=(Button) s_dl.findComponentById(ResourceTable.Id_s_ret);
+                TextField yl=(TextField) s_dl.findComponentById(ResourceTable.Id_s_year_l);
+                TextField yr=(TextField) s_dl.findComponentById(ResourceTable.Id_s_year_r);
+                TextField ml=(TextField) s_dl.findComponentById(ResourceTable.Id_s_month_l);
+                TextField mr=(TextField) s_dl.findComponentById(ResourceTable.Id_s_month_r);
+                TextField wl=(TextField) s_dl.findComponentById(ResourceTable.Id_s_week_l);
+                TextField wr=(TextField) s_dl.findComponentById(ResourceTable.Id_s_week_r);
+                TextField monl=(TextField) s_dl.findComponentById(ResourceTable.Id_s_money_l);
+                TextField monr=(TextField) s_dl.findComponentById(ResourceTable.Id_s_money_r);
+
+                ret.setClickedListener(s->{
+                    s_d.destroy();pd.destroy();
+                });
+                conf.setClickedListener(s->{
+                    special=1;
+                    syl=Integer.parseInt(yl.getText().length()==0? yl.getHint():yl.getText() );
+                    syr=Integer.parseInt(yr.getText().length()==0? yr.getHint():yr.getText() );
+
+                    sml=Integer.parseInt(ml.getText().length()==0? ml.getHint():ml.getText() );
+                    smr=Integer.parseInt(mr.getText().length()==0? mr.getHint():mr.getText() );
+
+                    swl=Integer.parseInt(wl.getText().length()==0? wl.getHint():wl.getText() );
+                    swr=Integer.parseInt(wr.getText().length()==0? wr.getHint():wr.getText() );
+
+                    smonl=Integer.parseInt(monl.getText().length()==0? monl.getHint():monl.getText() );
+                    smonr=Integer.parseInt(monr.getText().length()==0? monr.getHint():monr.getText() );
+                    Text date=(Text) findComponentById(ResourceTable.Id_date);
+                    date.setText("条件筛选▼");
+                    update_rec();
+                    s_d.destroy();pd.destroy();
+                });
+            });
+
+
             m.setTextSize(AttrHelper.vp2px(30,getContext()));
             y.setTextSize(AttrHelper.vp2px(30,getContext()));
+            sel.setTextSize(AttrHelper.vp2px(30,getContext()));
+
             m.setPadding(10,10,10,10);
             y.setPadding(10,10,10,10);
-            dl.addComponent(m);dl.addComponent(y);
+            sel.setPadding(10,10,10,10);
+            dl.addComponent(m);dl.addComponent(y);dl.addComponent(sel);
 
             m.setClickedListener(v->{
                 Intent in=new Intent();
@@ -159,7 +302,7 @@ public class MainAbilitySlice extends AbilitySlice {
             Button b2=(Button) dl.findComponentById(ResourceTable.Id_pic_confirm);
             b1.setClickedListener(v->{cd.destroy();});
             b2.setClickedListener(v->{
-                year=picker.getYear();month=picker.getMonth();
+                year=picker.getYear();month=picker.getMonth();special=0;
                 date.setText(String.valueOf(year)+"-"+String.valueOf(month)+"▼");
                 update_rec();
                 cd.destroy();
@@ -175,10 +318,20 @@ public class MainAbilitySlice extends AbilitySlice {
     }
     public void update_rec(){
         in=out=0;
-        if(order==0)
-            recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
-        else{
-            recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
+        recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
+        if(special==1){
+            recList=o_ctx.query(o_ctx.where(Rec.class));
+            List<Rec> new_r= new ArrayList<>();
+            for(Rec r:recList){
+                if(r.year>=syl&&r.year<=syr&&r.month>=sml&&r.month<=smr){
+                    int dl=(swl-1)*7+1,dr=swr*7;
+                    if(r.day>=dl&&r.day<=dr&&r.getVal()>=smonl&&r.getVal()<=smonr)
+                        new_r.add(r);
+                }
+            }
+            recList=new_r;
+        }
+        if(order==1){
             TreeMap<Integer, ArrayList<Rec> > mp=new TreeMap<>();
             for(Rec r:recList){
                 int y1=r.getYear(),m1=r.getMonth(),d1=r.getDay();

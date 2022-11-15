@@ -13,6 +13,14 @@
     "package": "com.example.book_keeping_app",
     "name": ".MyApplication",
     "mainAbility": "com.example.book_keeping_app.MainAbility",
+    "metaData": {
+      "customizeData": [
+        {
+          "name": "hwc-theme",
+          "value": "androidhwext:style/Theme.Emui.NoTitleBar"
+        }
+      ]
+    },
     "deviceType": [
       "phone",
       "tablet",
