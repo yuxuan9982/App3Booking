@@ -168,7 +168,7 @@ public class BookSlice extends AbilitySlice {
         tabList.removeAllComponents();//if not , return make 2 more
         for(int i=0;i<=1;i++){
             TabList.Tab tab=tabList.new Tab(getContext());
-            tab.setText(tab_name[i]);
+            tab.setText(tab_name[i]);tab.setClickable(false);
             tabList.addTab(tab);
             if(i==0)tab.select();
         }
@@ -176,20 +176,21 @@ public class BookSlice extends AbilitySlice {
         List<Integer> lst=new ArrayList<>();
         lst.add(ResourceTable.Layout_get_out);lst.add(ResourceTable.Layout_get_in);
         ps.setProvider(new PageProvider(lst,this));
-//        tabList.addTabSelectedListener(new TabList.TabSelectedListener() {
-//            @Override
-//            public void onSelected(TabList.Tab tab) {
-//                ps.setCurrentPage(tab.getPosition());
-//            }
-//            @Override
-//            public void onUnselected(TabList.Tab tab) {
-//
-//            }
-//            @Override
-//            public void onReselected(TabList.Tab tab) {
-//
-//            }
-//        });
+        tabList.addTabSelectedListener(new TabList.TabSelectedListener() {
+            @Override
+            public void onSelected(TabList.Tab tab) {
+                //ps.setCurrentPage(tab.getPosition());
+            }
+            @Override
+            public void onUnselected(TabList.Tab tab) {
+
+            }
+            @Override
+            public void onReselected(TabList.Tab tab) {
+
+            }
+        });
+        tabList.setClickable(false);
         ps.addPageChangedListener(new PageSlider.PageChangedListener() {
             @Override
             public void onPageSliding(int i, float v, int i1) {}

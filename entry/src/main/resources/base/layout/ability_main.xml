@@ -14,7 +14,7 @@
             ohos:id="$+id:title"
             ohos:height="match_content"
             ohos:width="match_parent"
-            ohos:background_element="yellow"
+            ohos:background_element="#FF808A87"
             ohos:text_alignment="center"
             ohos:text="记账本"
             ohos:text_size="30vp"
@@ -23,6 +23,7 @@
             ohos:height="match_content"
             ohos:layout_alignment="horizontal_center"
             ohos:orientation="vertical"
+            ohos:background_element="$media:bac2"
             ohos:top_margin="20vp"
             ohos:width="match_parent">
             <Text
