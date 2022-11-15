@@ -22,7 +22,9 @@ import ohos.data.rdb.RdbStore;
 import ohos.data.rdb.StoreConfig;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeMap;
 
 public class MainAbilitySlice extends AbilitySlice {
     int cnt=0;
@@ -35,7 +37,7 @@ public class MainAbilitySlice extends AbilitySlice {
             update_rec();
         }
     }
-    int year,month;
+    int year,month,order;
     double in,out;
     //排序方式
     //本月分析
@@ -81,6 +83,33 @@ public class MainAbilitySlice extends AbilitySlice {
         //list container part
         get_tot();
         get_more();
+        get_order();
+    }
+    public void get_order(){
+        Image i_order=(Image) findComponentById(ResourceTable.Id_order);
+        i_order.setClickedListener(o->{
+            PopupDialog pd=new PopupDialog(getContext(),o);
+            DirectionalLayout dl=new DirectionalLayout(getContext());
+            set_but_back(dl,192,192,192);
+            dl.setHeight(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+            dl.setWidth(ComponentContainer.LayoutConfig.MATCH_CONTENT);
+            Text m=new Text(getContext()),y=new Text(getContext());
+            m.setText("插入顺序");y.setText("时间顺序");
+            m.setTextSize(AttrHelper.vp2px(30,getContext()));
+            y.setTextSize(AttrHelper.vp2px(30,getContext()));
+            m.setPadding(10,10,10,10);
+            y.setPadding(10,10,10,10);
+            dl.addComponent(m);dl.addComponent(y);
+            m.setClickedListener(v->{order=0;pd.destroy();update_rec();});
+            y.setClickedListener(v->{
+                order=1;
+                pd.destroy();
+                update_rec();}
+            );
+            pd.setCustomComponent(dl);
+            pd.setAutoClosable(true);
+            pd.show();
+        });
     }
     public void get_more(){
         Image more=(Image) findComponentById(ResourceTable.Id_more);
@@ -146,7 +175,25 @@ public class MainAbilitySlice extends AbilitySlice {
     }
     public void update_rec(){
         in=out=0;
-        recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
+        if(order==0)
+            recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
+        else{
+            recList=o_ctx.query(o_ctx.where(Rec.class).equalTo("year",year).equalTo("month",month));
+            TreeMap<Integer, ArrayList<Rec> > mp=new TreeMap<>();
+            for(Rec r:recList){
+                int y1=r.getYear(),m1=r.getMonth(),d1=r.getDay();
+                int tot=-y1*366*31-m1*31-d1;
+                if(mp.get(tot)==null) mp.put(tot,new ArrayList<>());
+                ArrayList<Rec> arr=mp.get(tot);arr.add(r);
+                mp.put(tot, arr );
+            }
+            List<Rec> new_lst=new ArrayList<>();
+            for(Integer o:mp.keySet()){
+                ArrayList<Rec> v=mp.get(o);
+                new_lst.addAll(v);
+            }
+            recList=new_lst;
+        }
         ListContainer listContainer=(ListContainer) findComponentById(ResourceTable.Id_list_container);
         ListProvider provider= new ListProvider(recList,this);
         listContainer.setItemProvider(provider);

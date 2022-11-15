@@ -85,7 +85,7 @@ public class analyzeSlice extends AbilitySlice {
         List<Rec> lst_in=new ArrayList<>(),lst_out=new ArrayList<>();
         int cnt_in=0,cnt_out=0;
         for(pair p:arr_in){
-            Rec r=new Rec(1,p.second,"支出",p.first,year,month,0);
+            Rec r=new Rec(1,p.second,"收入",p.first,year,month,0);
             lst_in.add(r);
             if(++cnt_in>=5)break;
         }

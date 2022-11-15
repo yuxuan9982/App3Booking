@@ -63,24 +63,72 @@
             />
     </DirectionalLayout>
 
-    <Image
-        ohos:id="$+id:add"
-        ohos:height="40vp"
-        ohos:width="40vp"
+    <DependentLayout
+        ohos:height="match_content"
         ohos:layout_alignment="right|bottom"
-        ohos:background_element="$media:add"
-        ohos:right_margin="20vp"
         ohos:bottom_margin="20vp"
-        />
-    <Image
-        ohos:id="$+id:more"
-        ohos:height="40vp"
-        ohos:width="40vp"
+        ohos:right_margin="20vp"
+        ohos:width="match_content">
+        <Image
+            ohos:id="$+id:add"
+            ohos:height="40vp"
+            ohos:width="40vp"
+            ohos:background_element="$media:add"
+            />
+        <Text
+            ohos:id="$+id:main_add"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="添加"
+            ohos:text_size="20vp"
+            ohos:below="$id:add"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_content"
         ohos:layout_alignment="right|bottom"
-        ohos:background_element="$media:list"
         ohos:right_margin="80vp"
         ohos:bottom_margin="20vp"
-        />
+        ohos:width="match_content">
+        <Image
+            ohos:id="$+id:more"
+            ohos:height="40vp"
+            ohos:width="40vp"
+            ohos:background_element="$media:list"
+            />
+        <Text
+            ohos:id="$+id:main_more"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="更多"
+            ohos:text_size="20vp"
+            ohos:below="$id:more"
+            />
+    </DependentLayout>
+
+    <DependentLayout
+        ohos:height="match_content"
+        ohos:layout_alignment="right|bottom"
+        ohos:right_margin="140vp"
+        ohos:bottom_margin="20vp"
+        ohos:width="match_content">
+        <Image
+            ohos:id="$+id:order"
+            ohos:height="40vp"
+            ohos:width="40vp"
+            ohos:background_element="$media:order"
+            />
+        <Text
+            ohos:id="$+id:main_order"
+            ohos:height="match_content"
+            ohos:width="match_content"
+            ohos:text="顺序"
+            ohos:text_size="20vp"
+            ohos:below="$id:order"
+            />
+    </DependentLayout>
+
 <!--    <StackLayout-->
 <!--        ohos:height="match_content"-->
 <!--        ohos:width="match_content"-->
